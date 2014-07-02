@@ -11,8 +11,6 @@ app.get('/search', function(req, res) {
     function flickrSearch(text, page) {
 
         https.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&text=' + text + '&page=' + page + key, function(result) {
-            console.log("statusCode: ", result.statusCode);
-            console.log("headers: ", result.headers);
 
             var data = ""
             result.on('data', function(d) {
@@ -20,7 +18,6 @@ app.get('/search', function(req, res) {
             });
 
             result.on('end', function() {
-                console.log(data.toString());
                 res.send(data.toString());
             }).on('error', function(e) {
                 console.error(e);
