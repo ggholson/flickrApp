@@ -6,6 +6,8 @@ function loadImages(imageData) {
     var row;
     var div;
 
+    $('#imageholder').html("");
+
     for (i = 0; i < imageData.photos.photo.length; i++) {
         if (i % 4 === 0) row = $("<div>").addClass("row");
         div = $("<div>").addClass("col-md-3 imageholder");
@@ -17,7 +19,20 @@ function loadImages(imageData) {
         row.append(div);
         if (i % 3 === 0 && i !== 0) $('#imageholder').append(row);
     }
+
+
+    if ($('#pagebuttons').html() === "") {
+        row = $("<div>").addClass("row");
+        div = $("<div>").addClass("col-md-offset-5 col-md-2");
+        img = $('<btn>').addClass("btn btn-default btn-md").attr("type", "button").attr("id", "prevpagebutton").attr("disabled", "disabled").html("Prev Page");
+        div.append(img);
+        img = $('<btn>').addClass("btn btn-default btn-md").attr("type", "button").attr("id", "nextpagebutton").html("Next Page");
+        div.append(img);
+        row.append(div);
+        $('#pagebuttons').append(row);
+    }
 }
+
 
 function searchFlickrImages(text, page) {
     var searchResult = {};
@@ -32,25 +47,26 @@ function searchFlickrImages(text, page) {
 }
 
 $(document).ready(function() {
+    $('#pagebuttons').html("");
+
     $("#searchbutton").on('click', function() {
         curPage = 1;
         curSearch = $('#inputtext').val()
         searchFlickrImages(curSearch, curPage);
-        $('#prevpagebutton').attr('disabled', 'disabled');
     });
 
     $(document).on('click', '#prevpagebutton', function() {
-        page -= 1;
-        searchFlickrImages(curSearch, page);
-        if (page === 1) {
+        curPage -= 1;
+        searchFlickrImages(curSearch, curPage);
+        if (curPage === 1) {
             $('#prevpagebutton').removeAttr('disabled');
         }
     })
 
     $(document).on('click', '#nextpagebutton', function() {
-        page += 1;
-        searchFlickrImages(curSearch, page);
-        if (page === 2) {
+        curPage += 1;
+        searchFlickrImages(curSearch, curPage);
+        if (curPage === 2) {
             $('#prevpagebutton').removeAttr('disabled');
         }
     })
