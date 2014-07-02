@@ -4,6 +4,7 @@ var fs = require('fs');
 var app = express();
 
 var key = '&api_key=c3e4a3df9fbb67ce58a5441924d127bb'
+app.use(express.static(__dirname + '/public'));
 
 app.get('/search', function(req, res) {
 
