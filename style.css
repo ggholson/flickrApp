@@ -1,0 +1,14 @@
+body { 
+  background: url("http://i1290.photobucket.com/albums/b523/sammtastikk/62741_1194311136281_5483495_n_zps34a100a2.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.starter-template {
+	font-style:
+}
+h1 {
+	color:white;
+}
