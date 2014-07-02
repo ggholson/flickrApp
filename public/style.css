@@ -6,9 +6,11 @@ body {
   background-size: cover;
 }
 
-.starter-template {
+.container {
 	font-style:
+	vertical-align:text-bottom;
 }
-h1 {
-	color:white;
+
+h1{
+color:white;
 }
