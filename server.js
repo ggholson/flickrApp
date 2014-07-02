@@ -7,12 +7,6 @@ var key = '&api_key=c3e4a3df9fbb67ce58a5441924d127bb'
 
 app.get('/search', function(req, res) {
 
-    /*fs.readFile('index.html', function(err, data) {
-        if (err) throw err;
-
-        res.send(data.toString());
-        })
-    */
     function flickrSearch(text, page) {
 
         https.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&text=' + text + '&page=' + page + key, function(result) {
@@ -38,6 +32,15 @@ app.get('/search', function(req, res) {
     flickrSearch(req.query.text, req.query.page);
 
 });
+
+app.get('/', function(req, res) {
+    fs.readFile('flickrApp.html', function(err, data) {
+        if (err) throw err;
+
+        res.send(data.toString());
+    })
+})
+
 
 console.log("Starting to listen");
 
